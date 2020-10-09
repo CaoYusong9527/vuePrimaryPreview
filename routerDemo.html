@@ -6,7 +6,11 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <router-link to="/user/10">user</router-link>
+      <router-link to="/product?name=shone">goods</router-link>
+      <router-view></router-view>
+    </div>
   </body>
   <script src="./modules/vue.js"></script>
   <script src="./modules/vue-router.js"></script>
@@ -16,7 +20,13 @@
         {
           path: "/user/:id",
           component: {
-            template: `<div>user</div>`,
+            template: `<div>用户：{{$route.params.id}}</div>`,
+          },
+        },
+        {
+          path: "/product",
+          component: {
+            template: `<div>goods:{{$route.query.name}}</div>`,
           },
         },
       ],
