@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3 v-model.trim="ketType">dispaly:{{keyType}}</h3>
+      <input type="text" v-model="info" /><button @click="send">send</button>
+    </div>
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        info: "",
+        keyType: "",
+      },
+      methods: {
+        send() {
+          this.keyType = this.info;
+        },
+      },
+    });
+  </script>
+</html>

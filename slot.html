@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <panel :info="info">
+        <p>DefaultSolt</p>
+        <template v-slot:content>
+          <h2>Slot....</h2>
+          <p>this is a slot</p>
+        </template>
+      </panel>
+    </div>
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    Vue.component("panel", {
+      template: `
+          <div>
+            <h2>{{info}}</h2>
+            <slot></slot>
+            <slot name='content'></slot>
+        </div>
+          `,
+      props: ["info"],
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {
+        info: "Slot",
+      },
+    });
+  </script>
+</html>

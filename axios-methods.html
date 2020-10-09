@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" v-model="name" />
+      <input type="text" v-model="age" />
+    </div>
+  </body>
+  <script src="./modules/axios.js"></script>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        list: [],
+        name: "",
+        age: "",
+      },
+      created() {
+        this.getMethod();
+      },
+      methods: {
+        getMethod() {
+          axios
+            .get(" http://localhost:3000/list")
+            .then((res) => (this.list = res.data));
+        },
+        postMethoc() {
+          axios.post(" http://localhost:3000/list", {
+            name: this.name,
+            age: this.age,
+          });
+        },
+        delMethod() {
+          axios
+            .delete(" http://localhost:3000/list", {
+              params: {
+                id: 1,
+                //   name: zs,
+              },
+            })
+            .then((res) => {
+              this.list = res.data;
+              getMethod();
+            });
+        },
+        patchMethod() {
+          axios
+            .patch(" http://localhost:3000/list/1", {
+              name: "sss",
+              age: 22,
+            })
+            .then((res) => {
+              this.list = res.data;
+              getMethod();
+            });
+        },
+      },
+    });
+  </script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">{{sum}}</div>
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        num1: 10,
+        num2: 20,
+      },
+      computed: {
+        sum() {
+          return this.num1 + this.num2;
+        },
+      },
+    });
+  </script>
+</html>

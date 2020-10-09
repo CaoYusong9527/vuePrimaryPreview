@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{info}}</h2>
+      <hr />
+      <model @sending="sendFather"></model>
+    </div>
+    <script src="./modules/vue.js"></script>
+    <script>
+      Vue.component("model", {
+        template: `
+        <div>
+        <input type="text" placeholder="typing" v-model="msg"/>
+        <button @click='send'>send</button>
+      </div>`,
+        data: {
+          msg: "",
+        },
+        methods: {
+          send() {
+            this.$emit("sending", this.msg);
+          },
+        },
+      });
+      const app = new Vue({
+        el: "#app",
+        data: {
+          info: "",
+        },
+        methods: {
+          sendFather(str) {
+            this.info = str;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

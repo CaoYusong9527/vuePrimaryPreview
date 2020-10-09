@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{time|date}}</h2>
+    </div>
+  </body>
+  <script src="./modules/moment.js"></script>
+  <script src="./modules/vue.js"></script>
+
+  <script>
+    Vue.filter("date", function (value) {
+      return moment(value).subtract(6, "days").calendar();
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {
+        time: 3456789454564,
+      },
+    });
+  </script>
+</html>

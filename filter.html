@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>{{info|reverse("!!!")}}</h2>
+    </div>
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    Vue.filter("reverse", function (value, str) {
+      return str + value.split("").reverse().join("") + str;
+    });
+    const app = new Vue({
+      el: "#app",
+      data: {
+        info: "hello vue",
+      },
+    });
+  </script>
+</html>

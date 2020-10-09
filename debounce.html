@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="typing..." v-model="key" />
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        key: "",
+        timerId: "",
+      },
+      watch: {
+        key(newVal) {
+          clearTimeout(timerId);
+          timerId = setTimeout(() => {
+            axios.get(" http://localhost:3000/list", {
+              params: {
+                key: newVal,
+              },
+            });
+          }, 300);
+        },
+      },
+    });
+  </script>
+</html>

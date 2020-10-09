@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <table border="1">
+        <tr v-for="(item,index) in list" :key="item.id">
+          <td>{{index+1}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+      </table>
+      <input type="text" v-model="name" placeholder="typing name" />
+      <input type="text" v-model="age" placeholder="typing age" />
+      <button @click="add">submit</button>
+    </div>
+  </body>
+  <script src="./modules/axios.js"></script>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        list: [],
+
+        name: "",
+        age: "",
+      },
+      created() {
+        this.getList();
+      },
+      methods: {
+        getList() {
+          axios.get(" http://localhost:3000/list").then((res) => {
+            // console.log(res.data);
+            this.list = res.data;
+          });
+        },
+        add() {
+          axios
+            .post(" http://localhost:3000/list", {
+              name: this.name,
+              age: this.age,
+            })
+            .then((res) => {
+              this.list = res.data;
+              this.getList();
+            });
+        },
+      },
+    });
+  </script>
+</html>

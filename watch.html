@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input type="text" placeholder="typing..." v-model="info" />
+    </div>
+  </body>
+  <script src="./modules/vue.js"></script>
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        info: "",
+      },
+      watch: {
+        info(newVal) {
+          console.log(newVal);
+        },
+      },
+    });
+  </script>
+</html>
